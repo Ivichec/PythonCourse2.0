@@ -1,0 +1,251 @@
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE OFICIO IN ('DIRECTOR','VENDEDOR','ANALISTA')
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE SALARIO BETWEEN 250000 AND 500000
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE APELLIDO LIKE '%s%'
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE APELLIDO LIKE 's___'
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE OFICIO = 'VENDEDOR' ORDER BY SALARIO DESC
+SELECT APELLIDO,OFICIO,SALARIO FROM EMP WHERE OFICIO = 'VENDEDOR' ORDER BY 3 DESC
+
+SUBCONSULTAS
+
+SELECT * FROM EMP WHERE OFICIO = (SELECT OFICIO FROM EMP WHERE upper(APELLIDO) = 'CEREZO')
+SELECT * FROM EMP WHERE SALARIO > (SELECT AVG(SALARIO) FROM EMP)
+SELECT * FROM EMP WHERE OFICIO IN (SELECT DISTINCT OFICIO FROM EMP WHERE DEPT_NO = 30)
+
+SELECT LEVEL,DIR,EMP_NO,APELLIDO FROM EMP CONNECT BY PRIOR EMP_NO = DIR START WITH upper(APELLIDO) = 'JIMENEZ'
+SELECT LEVEL,DIR,EMP_NO,APELLIDO, SYS_CONNECT_BY_PATH(APELLIDO,'/') AS DESCIENDE FROM EMP CONNECT BY PRIOR EMP_NO = DIR START WITH upper(APELLIDO) = 'JIMENEZ'
+
+INSERTS
+INSERT INTO DEPT(DEPT_NO,DNOMBRE,LOC) VALUES(60,'COMPRAS','TOLEDO')
+COMMIT
+INSERT INTO DEPT VALUES(60,'COMPRAS','TOLEDO')
+COMMIT
+INSERT INTO COMERCIALES
+SELECT * FROM EMP WHERE OFICIO = 'VENDEDOR'
+COMMIT
+
+DELETE
+DELETE FROM DEPT WHERE LOC = 'TOLEDO'
+COMMIT
+
+UPDATE
+UPDATE DEPT SET LOC = 'ALICANTE' WHERE DEPT_NO = 50
+COMMIT
+UPDATE DEPT SET LOC = 'BURGOS', DNOMBRE = 'BAILE' WHERE DEPT_NO = 50
+COMMIT
+
+PROCEDIMIENTOS
+CREATE OR REPLACE PROCEDURE ALTADEPT(P1 DEPT.DEPT_NO%TYPE, P2 DEPT.DNOMBRE%TYPE, P3 DEPT.DEPT_LOC%TYPE)
+AS
+BEGIN
+       INSERT INTO DEPT(DEPT_NO,DNOMBRE,LOC) VALUES(P1,P2,P3);
+       COMMIT;
+END;
+EXECUTE ALTADEPT(111,'IVAN','MADRID');
+
+CREATE OR REPLACE PROCEDURE DELETEDOCTOR(P1 DOCTOR.DOCTOR_NO%TYPE)
+AS
+BEGIN
+       DELETE FROM DOCTOR WHERE DOCTOR.DOCTOR_NO = P1;
+       COMMIT;
+END;
+EXECUTE ALTADEPT(435);
+CREATE OR REPLACE PROCEDURE UPDATEEMP(P1 EMP.EMP_NO%TYPE,P2 EMP.SALARIO%TYPE,P3 EMP.COMISION%TYPE)
+AS
+BEGIN
+       UPDATE EMP SET EMP.SALARIO = P2, EMP.COMISION = P3 WHERE EMP.EMP_NO = P1;
+       COMMIT;
+END;
+EXECUTE UPDATEEMP(7839,800000,1000000);
+
+CON OUT 
+CREATE OR REPLACE PROCEDURE DEVOLVERSALIDA(P1 EMP.EMP_NO%TYPE,P2 OUT EMP.SALARIO%TYPE)
+AS
+BEGIN
+      SELECT SALARIO INTO P2 FROM EMP WHERE EMP_NO = P1;
+END;
+-----COMPROBAR-----
+DECLARE
+
+ MISAL INT;
+BEGIN
+  DEVOLVERSALIDA(7839,MISAL);
+  DBMS_OUTPUT.PUT_LINE(MISAL);
+END;
+
+FUNCIONES
+Create or replace function NumOficios (p_oficio in varchar2) return number
+AS
+v_empleados number;
+BEGIN
+  Select count(*) into v_empleados from emp where oficio=p_oficio;
+  Return v_empleados;
+END;
+SELECT NUMOFICIOS('DIRECTOR') FROM EMP
+
+PAQUETES
+Create or replace package salarios
+As
+Function maxsalario return emp.salario%TYPE;
+Function minsalario return emp.salario%TYPE;
+Procedure diferencia;
+END;
+EL BODY DEL PAQUETE
+Create or replace package body salarios
+AS
+Function maxsalario return emp.salario%TYPE
+As
+v_maxsalar emp.salario%TYPE;
+BEGIN
+Select max(salario) into v_maxsalar from emp;
+Return v_maxsalar;
+END;
+Function minsalario return emp.salario%TYPE
+As
+v_minsalar emp.salario%TYPE;
+BEGIN
+Select min(salario) into v_minsalar from emp;
+Return v_minsalar;
+END;
+Procedure diferencia
+As
+v_diferencia number;
+BEGIN
+v_diferencia:=maxsalario-minsalario; Dbms_output.put_line(v_diferencia);
+END;
+END;
+----PARA COMPROBAR----
+SET SERVEROUTPUT ON;
+EXECUTE SALARIOS.diferencia
+------------------------------------------------------------------------------------------
+Ejercicios
+1 SELECT * FROM EMP
+2 SELECT APELLIDO,OFICIO,SALARIO*14 AS SALARIO FROM EMP WHERE SALARIO>100000
+3 SELECT APELLIDO,OFICIO,SALARIO*14 AS SALARIO_ANUAL FROM EMP WHERE SALARIO*14>750000
+
+Ejercicios 36
+1 SELECT HOSPITAL.NOMBRE,SALA.NOMBRE FROM HOSPITAL INNER JOIN SALA ON HOSPITAL.HOSPITAL_COD = SALA.HOSPITAL_COD
+2 SELECT DEPT.LOC, COUNT(DEPT.LOC) AS NUM_TRABAJADORES FROM DEPT INNER JOIN EMP ON DEPT.DEPT_NO = EMP.DEPT_NO GROUP BY DEPT.LOC
+3 SELECT DEPT.DNOMBRE, COUNT(DEPT.DNOMBRE) AS NUM_TRABAJADORES FROM DEPT INNER JOIN EMP ON DEPT.DEPT_NO = EMP.DEPT_NO  GROUP BY DEPT.DNOMBRE
+4 SELECT ENFERMO.APELLIDO, HOSPITAL.NOMBRE, SALA.NOMBRE
+  FROM ENFERMO
+  INNER JOIN OCUPACION ON ENFERMO.INSCRIPCION = OCUPACION.INSCRIPCION 
+  LEFT JOIN HOSPITAL ON OCUPACION.HOSPITAL_COD = HOSPITAL.HOSPITAL_COD 
+  LEFT JOIN SALA ON OCUPACION.SALA_COD = SALA.SALA_COD 
+  GROUP BY ENFERMO.APELLIDO, HOSPITAL.NOMBRE, SALA.NOMBRE;
+
+Ejercicios 43
+1- 
+create or replace package empleados
+As
+Procedure insertar(numero EMP.EMP_NO%TYPE,apellido EMP.APELLIDO%TYPE,oficio EMP.OFICIO%TYPE,dir EMP.DIR%TYPE,fecha EMP.FECHA_ALT%TYPE,salario EMP.SALARIO%TYPE,comision EMP.COMISION%TYPE,numD EMP.DEPT_NO%TYPE);
+Procedure borrar(id EMP.EMP_NO%TYPE);
+Procedure modificar(numero EMP.EMP_NO%TYPE, salario EMP.SALARIO%TYPE);
+END;
+create or replace package body EMPLEADOS
+AS
+Procedure insertar(numero EMP.EMP_NO%TYPE,apellido EMP.APELLIDO%TYPE,oficio EMP.OFICIO%TYPE,dir EMP.DIR%TYPE,fecha EMP.FECHA_ALT%TYPE,salario EMP.SALARIO%TYPE,comision EMP.COMISION%TYPE,numD EMP.DEPT_NO%TYPE)
+As
+BEGIN
+  INSERT INTO EMP VALUES(numero,apellido,oficio,dir,fecha,salario,comision,numD);
+  commit;
+END;
+Procedure borrar(id EMP.EMP_NO%TYPE)
+As
+BEGIN
+  DELETE FROM EMP WHERE EMP.EMP_NO = id;
+  commit;
+END;
+Procedure modificar(numero EMP.EMP_NO%TYPE,salario EMP.SALARIO%TYPE)
+As
+BEGIN
+  UPDATE EMP SET EMP.SALARIO = salario WHERE EMP.EMP_NO = numero;
+  commit;
+END;
+END;
+EXECUTE EMPLEADOS.insertar(6969,'Ivan','REY',6969,'19/01/2003',100000,10009,1);
+EXECUTE EMPLEADOS.borrar(7900);
+EXECUTE EMPLEADOS.modificar(6969,9);
+2-
+CREATE OR REPLACE PACKAGE dept_package AS
+    PROCEDURE eliminar;
+    PROCEDURE eliminar(deptno IN NUMBER);
+END dept_package;
+ CREATE OR REPLACE PACKAGE BODY dept_package AS
+    PROCEDURE eliminar IS
+    BEGIN
+        DELETE FROM dept;
+        COMMIT;
+    END eliminar;
+    PROCEDURE eliminar(deptno IN NUMBER) IS
+    BEGIN
+        DELETE FROM dept WHERE deptno = deptno;
+        COMMIT;
+    END eliminar;
+END dept_package;
+EXECUTE dept_package.eliminar;
+EXECUTE dept_package.eliminar(10);
+3-
+CREATE OR REPLACE PACKAGE hospital_package AS
+    FUNCTION obtener_siguiente_numero_libre RETURN NUMBER;
+    PROCEDURE insertar_hospital(
+        nombre IN VARCHAR2, 
+        direccion IN VARCHAR2, 
+        telefono IN VARCHAR2, 
+        num_cama IN NUMBER
+    );
+END hospital_package;
+CREATE OR REPLACE PACKAGE BODY hospital_package AS
+
+    -- Implementación de la función que devuelve el siguiente número libre de hospital
+    FUNCTION obtener_siguiente_numero_libre RETURN NUMBER IS
+        siguiente_numero NUMBER;
+    BEGIN
+        SELECT NVL(MAX(hospital_cod), 0) + 1
+        INTO siguiente_numero
+        FROM hospital;
+        
+        RETURN siguiente_numero;
+    END obtener_siguiente_numero_libre;
+    PROCEDURE insertar_hospital(
+        nombre IN VARCHAR2, 
+        direccion IN VARCHAR2, 
+        telefono IN VARCHAR2, 
+        num_cama IN NUMBER
+    ) IS
+        nuevo_hospital_cod NUMBER;
+    BEGIN
+        nuevo_hospital_cod := obtener_siguiente_numero_libre;
+        INSERT INTO hospital (hospital_cod, nombre, direccion, telefono, num_cama)
+        VALUES (nuevo_hospital_cod, nombre, direccion, telefono, num_cama);
+        
+        COMMIT;
+    END insertar_hospital;
+
+END hospital_package;
+EXECUTE hospital_package.insertar_hospital('Nuevo Hospital', 'Calle Falsa 123', '123-4567', 250);
+4-
+CREATE OR REPLACE PACKAGE BODY ENFERMOS AS
+    FUNCTION maxviejo RETURN enfermo.apellido%TYPE AS
+        v_maxviejo enfermo.apellido%TYPE;
+    BEGIN
+        SELECT apellido
+        INTO v_maxviejo
+        FROM enfermo
+        WHERE fecha_nac = (SELECT MIN(fecha_nac) FROM enfermo);
+        
+        RETURN v_maxviejo;
+    END maxviejo;
+
+    FUNCTION minviejo RETURN enfermo.apellido%TYPE AS
+        v_minviejo enfermo.apellido%TYPE;
+    BEGIN
+        SELECT apellido
+        INTO v_minviejo
+        FROM enfermo
+        WHERE fecha_nac = (SELECT MAX(fecha_nac) FROM enfermo);
+        
+        RETURN v_minviejo;
+    END minviejo;
+END ENFERMOS;
+SELECT ENFERMOS.maxviejo,ENFERMOS.minviejo FROM DUAL;
+
