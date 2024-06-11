@@ -1,6 +1,6 @@
 import cx_Oracle
 
-connection = cx_Oracle.connect("system", "javaoracle", "localhost/XE")
+connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
 cursor = connection.cursor()
 try:
@@ -17,4 +17,4 @@ try:
 except connection.Error as error:
     print("Error: ", error)
 
-connection.close() 
+connection.close()
