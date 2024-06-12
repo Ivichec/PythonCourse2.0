@@ -5,16 +5,17 @@ connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 cursor = connection.cursor()
 try:
 
-    cursor.execute("SELECT DOCTOR_NO,APELLIDO,ESPECIALIDAD FROM DOCTOR WHERE upper(ESPECIALIDAD) = 'CARDIOLOGIA' ")
-    results = cursor.fetchall()
-    # Imprime los resultados
-    for row in results:
-        print(row)
-    print("Lista de empleados:")
-    print("---------------------------------------")
+    valor1 = input("Introduce salario 1:")
+    valor2 = input("Introduce salario 2:")
+    consulta = ("SELECT apellido,oficio,salario FROM emp where salario >=:p1 and salario<=:p2")
+    cursor.execute(consulta, (valor1,valor2))
+    # Si en un único parámetro tenemos que poner ',' a continuación del valor de la variable
 
-    for DOCTOR_NO, APELLIDO, ESPECIALIDAD in cursor:
-        print("Número empleado:", DOCTOR_NO, "Apellido:", APELLIDO, "Especialidad:", ESPECIALIDAD)
+    for ape, ofi, sal in cursor:
+        print("Apellido: ", ape)
+        print("Oficio: ", ofi)
+        print("Salario: ", str(sal))
+
 
 
 except connection.Error as error:
