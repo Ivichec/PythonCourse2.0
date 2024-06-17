@@ -15,5 +15,9 @@ while verdad:
             comi = int(input("Introduce la nueva comision: "))
             num = int(input("Introduce el emp_no: "))
             miEmp.modificar(sal,comi,num)
+            if int(miEmp.modificar(sal,comi,num)[0]) >= 1:
+                print("Doctores borrados: " + str(miEmp.modificar(sal,comi,num)[0]))
+            else:
+                print("Ningun doctor borrado")
         case 3:
             verdad = False

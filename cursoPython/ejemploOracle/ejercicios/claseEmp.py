@@ -1,5 +1,6 @@
 import cx_Oracle
 
+
 class Empleado:
     connection = None
     cursor = None
@@ -13,11 +14,12 @@ class Empleado:
         comi = self.cursor.var(cx_Oracle.NUMBER)
         args = (sal, comi, num)
         self.cursor.callproc('ejercicioEmp.buscar', args)
-        return [sal.getvalue(),comi.getvalue()]
-    def modificar(self, sal,comi,num):
+        return [sal.getvalue(), comi.getvalue()]
+
+    def modificar(self, sal, comi, num):
         try:
-            self.cursor.callproc('ejercicioEmp.modificar', (sal,comi,num))
+            afectados = self.cursor.var(cx_Oracle.NUMBER)
+            self.cursor.callproc('ejercicioEmp.modificar', (sal, comi, num, afectados))
+            return [afectados.getvalue()]
         except self.connection.Error as error:
             print("Error: ", error)
-
-
