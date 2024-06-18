@@ -34,3 +34,35 @@ def jugadores(request):
     }
     return render(request, "deportes/jugadores.html", contexto)
 
+def amigos(request):
+    listaAmigos = [
+        {
+            "Nombre": "Sergio"
+        },
+        {
+            "Nombre": "Eden"
+        },
+        {
+            "Nombre": "Karim"
+        },
+        {
+            "Nombre": "Toni"
+        },
+        {
+            "Nombre": "Thibaut"
+        },
+        {
+            "Nombre": "Iván"
+        },
+        {
+            "Nombre": "Manuel"
+        },
+        {
+            "Nombre": "Alejandro"
+        },
+    ]
+    contexto = {
+        'listado_amigos': listaAmigos
+    }
+    return render(request, "amigos/dataList.html", contexto)
+

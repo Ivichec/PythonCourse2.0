@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Titulo</title>
+</head>
+<body>
+<form>
+    <fieldset>
+        <legend>Probando los datalist</legend>
+        <label>Busca amigos en la lista:
+            <input list="agenda" name="amigos" type="text"/>
+            <datalist id="agenda">
+                {%for amigos in listado_amigos%}
+                    <option value={{amigos.Nombre}}>
+                {% endfor%}
+            </datalist>
+        </label>
+    </fieldset>
+</form>
+</body>
+</html>
