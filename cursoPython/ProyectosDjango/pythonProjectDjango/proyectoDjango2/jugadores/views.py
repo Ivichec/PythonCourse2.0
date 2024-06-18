@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+def index(request):
+    return HttpResponse("<h1>Pagina de index de Deportes</h1>")
 def jugadores(request):
     listajugadores = [
         {
@@ -65,4 +67,8 @@ def amigos(request):
         'listado_amigos': listaAmigos
     }
     return render(request, "amigos/dataList.html", contexto)
+
+def peliculas(request):
+    return render(request, "amigos/peliculas.html")
+
 
