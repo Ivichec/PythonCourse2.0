@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 style="color:blue;">DATOS TABLA EMP</h1>
+
+<table border="1" style="width:100%">
+        <tr>
+            <th>NUMERO EMPLEADO</th>
+            <th>APELLIDO</th>
+            <th>OFICIO</th>
+            <th>DIR</th>
+            <th>FECHA DE ALTA</th>
+            <th>SALARIO</th>
+            <th>COMISION</th>
+            <th>NUMERO DE DEPARTAMENTO</th>
+        </tr>
+        {% for num,ape,ofi,dir,fecha,sal,com,num_D in listado_empleados%}
+
+            <tr>
+                <td>{{num}}</td>
+                <td>{{ape}}</td>
+                <td>{{ofi}}</td>
+                <td>{{dir}}</td>
+                 <td>{{fecha}}</td>
+                <td>{{sal}}</td>
+                <td>{{com}}</td>
+                <td>{{num_D}}</td>
+            </tr>
+       {% endfor%}
+</table>
+</body>
+</html>
