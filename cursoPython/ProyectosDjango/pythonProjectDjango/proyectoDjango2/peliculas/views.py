@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from emp.models import Peliculas
+from peliculas.models import Peliculas
 
 
 def index(request):

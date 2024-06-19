@@ -4,26 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos/estilos.css'%}">
 </head>
 <body>
-<h1 style="color:blue;">DATOS TABLA EMP</h1>
+<h1 style="color:blue; text-align:center">TABLA DE PELICULAS</h1>
 
 <table border="1" style="width:100%">
-        <tr>
-            <th>NUMERO EMPLEADO</th>
-            <th>APELLIDO</th>
-            <th>OFICIO</th>
-            <th>DIR</th>
-            <th>FECHA DE ALTA</th>
-            <th>SALARIO</th>
-            <th>COMISION</th>
-            <th>NUMERO DE DEPARTAMENTO</th>
+        <tr style="background-color:lightblue">
+            <th>TITULO</th>
+            <th>CARATULA</th>
         </tr>
         {% for dato1,dato2 in listado_peliculas%}
 
-            <tr>
-                <td>{{dato1}}</td>
-                <td>{{dato2}}</td>
+            <tr style="background-color:yellow">
+
+                <td style="text-align:center">{{dato1}}</td>
+                <td style="text-align:center"><img src="{% static 'Carteles/'%}{{dato2}}" id="foto" width="450" height="670"/></td>
             </tr>
        {% endfor%}
 </table>

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'jugadores',
     'futbol',
     'emp',
+    'peliculas',
 ]
 
 MIDDLEWARE = [
