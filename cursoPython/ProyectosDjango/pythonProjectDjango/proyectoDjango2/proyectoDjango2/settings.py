@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'futbol',
     'emp',
     'peliculas',
+    'request',
 ]
 
 MIDDLEWARE = [
