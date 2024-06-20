@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 style="color:blue;">Departamentos</h1>
+    <table border="1" style="width:100%">
+        <tr>
+            <th>Numero de departamento</th>
+            <th>Nombre de departamento</th>
+            <th>Localización de departamento</th>
+        </tr>
+        {% for ape, ofi, sal in listado_empleados %}
+        <tr>
+            <td>{{ ape }}</td>
+            <td>{{ ofi }}</td>
+            <td>{{ sal }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br/><br/><br/>
+    <div style="background-color:yellow;float:left">
+        <a href="javascript:history.back()">VOLVER</a>
+    </div>
+</body>
+</html>

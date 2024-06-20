@@ -7,21 +7,7 @@
 <body>
     <h1 style="color:blue;">Departamentos</h1>
     {% if condicional1 %}
-    <table border="1" style="width:100%">
-        <tr>
-            <th>Numero de departamento</th>
-            <th>Nombre de departamento</th>
-            <th>Localización de departamento</th>
-        </tr>
-        {% for ape, ofi, sal in listado_empleados %}
-        <tr>
-            <td>{{ ape }}</td>
-            <td>{{ ofi }}</td>
-            <td>{{ sal }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <br/><br/><br/>
+    <h1>Modificado Correctamente</h1>
     {% else %}
     <h1>Error en el import, vuelve a intentarlo</h1>
     {% endif %}

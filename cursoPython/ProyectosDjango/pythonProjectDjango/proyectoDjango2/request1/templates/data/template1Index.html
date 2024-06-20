@@ -6,14 +6,13 @@
 </head>
 
 <body>
-      <form method="post" action="alta">
-        {% csrf_token %}
-          <h4>Introduzca los datos para una nueva alta de departamento:</h4>
-          DEPT_NO: <input type="text" name="dept_no" /><br/><br/>
-          DNOMBRE: <input type="text" name="dnombre" /><br/><br/>
-          LOCALIZACION: <input type="text" name="loc" /><br/><br/>
-          <input type="submit" value="Ver Datos">
-    </form>
+      <a href="{% url 'Alta' %}">ALTA</a>
+      <br><br>
+      <a href="{% url 'Baja' %}">BAJA</a>
+      <br><br>
+      <a href="{% url 'Modificar' %}">MODIFICAR LOCALIDAD</a>
+      <br><br>
+      <a href="{% url 'Listar' %}">LISTAR TABLA EMP</a>
 
 </body>
 </html>
