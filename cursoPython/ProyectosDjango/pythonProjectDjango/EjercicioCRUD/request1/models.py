@@ -35,8 +35,10 @@ class Empleado1:
             consulta = "UPDATE DEPT SET LOC = :p1 WHERE DEPT_NO = :p2"
             cursor.execute(consulta, (loc,dept_no))
             self.connection.commit()
+            return True
         except cx_Oracle.DatabaseError as error:
             print("Error: ", error)
+            return False
         finally:
             cursor.close()
     def devolverdato(self):
