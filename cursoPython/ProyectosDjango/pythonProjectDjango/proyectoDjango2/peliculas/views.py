@@ -8,4 +8,4 @@ def index(request):
     contexto = {
         'listado_peliculas': cursor
     }
-    return render(request, "template1.html", contexto)
+    return render(request, "template2Alta.html", contexto)

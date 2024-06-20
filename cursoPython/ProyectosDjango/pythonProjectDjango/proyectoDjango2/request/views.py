@@ -3,7 +3,7 @@ from request.models import Empleado
 
 
 def index(request):
-    return render(request, "datos/template1.html")
+    return render(request, "data/template2Alta.html")
 
 
 def empleados(request):
@@ -13,5 +13,5 @@ def empleados(request):
     contexto = {
         'listado_empleados': cursor
     }
-    return render(request, "datos/template2.html", contexto)
+    return render(request, "data/templateResultado.html", contexto)
 

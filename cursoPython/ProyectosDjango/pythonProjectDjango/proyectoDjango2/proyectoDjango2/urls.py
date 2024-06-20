@@ -26,4 +26,5 @@ urlpatterns = [
     path('emp/', include('emp.urls')),
     path('pelis/', include('peliculas.urls')),
     path('request/', include('request.urls')),
+    path('altaDept/', include('request1.urls')),
 ]

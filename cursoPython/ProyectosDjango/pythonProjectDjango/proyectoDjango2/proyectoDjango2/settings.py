@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'emp',
     'peliculas',
     'request',
+    'request1',
 ]
 
 MIDDLEWARE = [
