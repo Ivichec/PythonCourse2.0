@@ -7,12 +7,12 @@
 <body>
     <h1 style="color:blue;">Departamentos</h1>
     {% if condicional1 %}
-    <h1>Modificado Correctamente</h1>
+    <h1>{{crud}} Correctamente</h1>
     {% else %}
     <h1>Error en el import, vuelve a intentarlo</h1>
     {% endif %}
     <div style="background-color:yellow;float:left">
-        <a href="javascript:history.back()">VOLVER</a>
+        <a href="javascript:history.go(-2)">VOLVER</a>
     </div>
 </body>
 </html>

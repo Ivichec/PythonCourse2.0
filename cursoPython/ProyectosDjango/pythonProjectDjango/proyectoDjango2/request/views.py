@@ -13,5 +13,5 @@ def empleados(request):
     contexto = {
         'listado_empleados': cursor
     }
-    return render(request, "data/templateResultado.html", contexto)
+    return render(request, "datos/templateResultado.html", contexto)
 

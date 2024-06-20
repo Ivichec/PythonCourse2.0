@@ -20,7 +20,7 @@ class Empleado1:
     def baja(self, dept_no):
         cursor = self.connection.cursor()
         try:
-            consulta = "DELETE FROM EMP WHERE DEPT_NO = :p1"
+            consulta = "DELETE FROM DEPT WHERE DEPT_NO = :p1"
             cursor.execute(consulta, (dept_no,))
             self.connection.commit()
             return True
@@ -32,13 +32,11 @@ class Empleado1:
     def modificar(self, dept_no,loc):
         cursor = self.connection.cursor()
         try:
-            consulta = "UPDATE DEPT SET LOC = :p2 WHERE DEPT_NO = p1"
-            cursor.execute(consulta, (dept_no, loc))
+            consulta = "UPDATE DEPT SET LOC = :p1 WHERE DEPT_NO = :p2"
+            cursor.execute(consulta, (loc,dept_no))
             self.connection.commit()
-            return True
         except cx_Oracle.DatabaseError as error:
             print("Error: ", error)
-            return False
         finally:
             cursor.close()
     def devolverdato(self):
