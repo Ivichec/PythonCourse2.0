@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form action="formularioPost" method="POST">
+        <p>Nombre: <input type="text" name="nombre" size="40"></p>
+        <p>Primer Apellido: <input type="text" name="apellido1" size="40"></p>
+        <p>Segundo Apellido: <input type="text" name="apellido2" size="40"></p>
+        <p>Domicilio: <input type="text" name="domicilio" size="40"></p>
+        <select name="ciudad">
+            <option value="Madrid" selected>Madrid</option>
+            <option value="Barcelona">Barcelona</option>
+            <option value="Toledo">Toledo</option>
+        </select>
+        <p>Sexo:
+            <input type="radio" name="radiosexo" value="Hombre"> Hombre
+            <input type="radio" name="radiosexo" value="Mujer"> Mujer
+        </p>
+        <p>Sistema Operativo:
+            Windows XP </W><input type="checkbox" name="sistema" value="Windows XP" />
+            W 2000<input type="checkbox" name="sistema" value="W 2000" />
+            Linux<input type="checkbox" name="sistema" value="Linux" />
+        </p>
+        <textarea name="areatext"></textarea>
+        <p>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Borrar">
+        </p>
+    </form>
+</body>
+</html>
