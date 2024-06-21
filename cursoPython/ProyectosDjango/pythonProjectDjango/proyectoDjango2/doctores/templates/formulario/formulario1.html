@@ -29,7 +29,13 @@
             <th>SALARIO</th>
         </tr>
         <p>{{condicional1}}</p>
-
+        {% for ape, ofi, sal in condicional1 %}
+        <tr>
+            <td>{{ ape }}</td>
+            <td>{{ ofi }}</td>
+            <td>{{ sal }}</td>
+        </tr>
+        {% endfor %}
     </table>
     <br/><br/><br/>
     <div style="background-color:yellow;float:left">

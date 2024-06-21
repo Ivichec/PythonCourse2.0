@@ -15,11 +15,14 @@ def alta1(request):
     condicional = []
     hosp_nombres = request.POST.getlist('hosp')
     emple = Formulario()
-
-    for nombre in hosp_nombres:
-        results = emple.insertdato(nombre)
-        if results is not None:
-            condicional.append(results)
+    contador = 0
+    for i in hosp_nombres:
+        if contador == 0:
+            sis1 = hosp_nombres[0]
+        else:
+            sis1 = sis1 + "," + i
+        contador += 1
+    condicional = emple.insertdato(sis1)
     context = {
         'condicional1': condicional,
         'condicional': True,
