@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'peliculas',
     'request',
     'request1',
+    'formulario',
 ]
 
 MIDDLEWARE = [

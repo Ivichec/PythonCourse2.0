@@ -6,6 +6,7 @@
 </head>
 <body>
     <form action="formularioPost" method="POST">
+        {% csrf_token %}
         <p>Nombre: <input type="text" name="nombre" size="40"></p>
         <p>Primer Apellido: <input type="text" name="apellido1" size="40"></p>
         <p>Segundo Apellido: <input type="text" name="apellido2" size="40"></p>

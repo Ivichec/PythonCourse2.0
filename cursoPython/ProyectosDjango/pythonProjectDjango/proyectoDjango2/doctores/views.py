@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from formulario.models import Formulario
+from doctores.models import Formulario
 
 
 def index(request):
