@@ -5,28 +5,23 @@ from doctores.models import Formulario
 
 
 def index(request):
-    return render(request, "formularios/formulario1.html")
+    condicional1 = {
+        'condicional': False,
+    }
+    return render(request, "formulario/formulario1.html", condicional1)
 
 
 def alta1(request):
-    nom = request.POST['nombre']
-    ape1 = request.POST['apellido1']
-    ape2 = request.POST['apellido2']
-    dom = request.POST['domicilio']
-    ciu = request.POST['ciudad']
-    sex = request.POST['radiosexo']
-    sis = request.POST.getlist('sistema')
-    contador = 0
-    for i in sis:
-        if contador == 0:
-            sis1 = sis[0]
-        else:
-            sis1 = sis1 + "," + i
-        contador += 1
-    com = request.POST['areatext']
+    condicional = []
+    hosp_nombres = request.POST.getlist('hosp')
     emple = Formulario()
-    condicional = emple.insertdato(nom, ape1, ape2, dom, ciu, sex, sis1, com)
-    condicional1 = {
+
+    for nombre in hosp_nombres:
+        results = emple.insertdato(nombre)
+        if results is not None:
+            condicional.append(results)
+    context = {
         'condicional1': condicional,
+        'condicional': True,
     }
-    return render(request, "formularios/templateResultado.html", condicional1)
+    return render(request, "formulario/formulario1.html", context)

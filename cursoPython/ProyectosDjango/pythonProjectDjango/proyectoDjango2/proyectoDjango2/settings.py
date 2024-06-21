@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'request',
     'request1',
     'formulario',
+    'doctores',
 ]
 
 MIDDLEWARE = [
