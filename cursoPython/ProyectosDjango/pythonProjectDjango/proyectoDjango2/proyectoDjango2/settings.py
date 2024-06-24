@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'formulario',
     'doctores',
     'metodoget',
+    'deptMul',
 ]
 
 MIDDLEWARE = [

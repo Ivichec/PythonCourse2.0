@@ -4,17 +4,39 @@ class Formulario:
     def __init__(self):
         self.connection = cx_Oracle.connect("system", "pythonoracle", "localhost/XE")
 
-    def insertdato(self, hospNombre):
+    def insertdato(self, dept_no, dnombre, loc):
         cursor = self.connection.cursor()
         try:
-            consulta = (
-                "SELECT * FROM EMP WHERE OFICIO = :p1"
-            )
-            cursor.execute(consulta,(hospNombre,))
-            results = cursor.fetchall()
-            return results  # Return the fetched results
+            consulta = "INSERT INTO DEPT VALUES(:p1, :p2, :p3)"
+            cursor.execute(consulta, (dept_no, dnombre, loc))
+            self.connection.commit()
+            return True
         except cx_Oracle.DatabaseError as error:
             print("Error: ", error)
-            return None
+            return False
+        finally:
+            cursor.close()
+
+    def baja(self, dept_no):
+        cursor = self.connection.cursor()
+        try:
+            consulta = "DELETE FROM DEPT WHERE DEPT_NO = :p1"
+            cursor.execute(consulta, (dept_no,))
+            self.connection.commit()
+            return True
+        except cx_Oracle.DatabaseError as error:
+            print("Error: ", error)
+            return False
+        finally:
+            cursor.close()
+
+    def modificar(self, dept_no, loc):
+        cursor = self.connection.cursor()
+        try:
+            consulta = "UPDATE DEPT SET LOC = :p1 WHERE DEPT_NO = :p2"
+            cursor.execute(consulta, (loc, dept_no))
+            self.connection.commit()
+        except cx_Oracle.DatabaseError as error:
+            print("Error: ", error)
         finally:
             cursor.close()

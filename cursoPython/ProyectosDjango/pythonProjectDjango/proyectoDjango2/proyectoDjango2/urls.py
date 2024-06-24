@@ -30,4 +30,5 @@ urlpatterns = [
     path('form/', include('formulario.urls')),
     path('doctor/', include('doctores.urls')),
     path('get/', include('metodoget.urls')),
+    path('deptm/', include('deptMul.urls')),
 ]
