@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+      <a href="{% url 'formularioGet' %}?Oficio=PRESIDENTE">PRESIDENTES</a>
+      <br><br>
+      <a href="{% url 'Baja' %}?Oficio=ANALISTA">ANALISTAS</a>
+      <br><br>
+      <a href="{% url 'Modificar' %}?Oficio=EMPLEADO">EMPLEADOS</a>
+      <br><br>
+      <a href="{% url 'Listar' %}?Oficio=DIRECTOR">DIRECTORES</a>
+      <br><br>
+      <a href="{% url 'Listar' %}?Oficio=VENDEDOR">VENDEDORES</a>
+</body>
+</html>

@@ -29,4 +29,5 @@ urlpatterns = [
     path('altaDept/', include('request1.urls')),
     path('form/', include('formulario.urls')),
     path('doctor/', include('doctores.urls')),
+    path('get/', include('metodoget.urls')),
 ]
