@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 # Create your views here.
-from metodoget.models import Formulario
+from deptMul.models import Formulario
 
 
 def index(request):

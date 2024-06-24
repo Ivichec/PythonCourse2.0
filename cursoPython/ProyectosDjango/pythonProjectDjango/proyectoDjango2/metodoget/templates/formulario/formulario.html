@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+   <h1 style="color:blue;">Doctores</h1>
+    <table border="1" style="width:100%">
+        <tr>
+            <th>NUMERO EMPLEADO</th>
+            <th>APELLIDO</th>
+            <th>OFICIO</th>
+            <th>DIR</th>
+            <th>FECHA DE ALTA</th>
+            <th>SALARIO</th>
+            <th>COMISION</th>
+            <th>NUMUERO DE DEPARTAMENTO</th>
+        </tr>
+        <p>{{condicional1}}</p>
+        {% for p1,p2,p3,p4,p5,p6,p7,p8 in condicional1 %}
+        <tr>
+            <td>{{ p1 }}</td>
+            <td>{{ p2 }}</td>
+            <td>{{ p3 }}</td>
+            <td>{{ p4 }}</td>
+            <td>{{ p5 }}</td>
+            <td>{{ p6 }}</td>
+            <td>{{ p7 }}</td>
+            <td>{{ p8 }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+    <br/><br/><br/>
+    <div style="background-color:yellow;float:left">
+        <a href="javascript:history.back()">VOLVER</a>
+    </div>
+</body>
+</html>

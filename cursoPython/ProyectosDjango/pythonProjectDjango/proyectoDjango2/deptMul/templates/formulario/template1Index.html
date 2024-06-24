@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+      <form method="post" action="formulario">
+        {% csrf_token %}
+          <h4>DEPARTAMENTOS</h4>
+          DEPT_NO: <input type="text" name="dept_no" /><br/><br/>
+          DNOMBRE: <input type="text" name="dnombre" /><br/><br/>
+          LOCALIZACION: <input type="text" name="loc" /><br/><br/>
+          <input type="submit" name="operacion" value="Insertar">
+          <input type="submit" name="operacion" value="Modificar">
+          <input type="submit" name="operacion" value="Eliminar">
+      </form>
+{% if condicional1 %}
+      <p>Registros eliminados: {{num}}</p>
+{% endif %}
+</body>
+</html>

@@ -5,7 +5,7 @@ from formulario.models import Formulario
 
 
 def index(request):
-    return render(request, "formularios/formulario1.html")
+    return render(request, "formularios/formulario.html")
 
 
 def alta1(request):

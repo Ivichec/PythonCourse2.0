@@ -8,7 +8,7 @@ def index(request):
     condicional1 = {
         'condicional': False,
     }
-    return render(request, "formulario/formulario1.html", condicional1)
+    return render(request, "formulario/formulario.html", condicional1)
 
 
 def alta1(request):
@@ -27,4 +27,4 @@ def alta1(request):
         'condicional': True,
         'p1': sis1
     }
-    return render(request, "formulario/formulario1.html", context)
+    return render(request, "formulario/formulario.html", context)
