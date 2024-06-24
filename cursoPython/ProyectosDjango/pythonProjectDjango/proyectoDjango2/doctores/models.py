@@ -10,7 +10,7 @@ class Formulario:
             consulta = (
                 "SELECT DOCTOR.APELLIDO, DOCTOR.ESPECIALIDAD, DOCTOR.SALARIO "
                 "FROM HOSPITAL INNER JOIN DOCTOR ON HOSPITAL.HOSPITAL_COD = DOCTOR.HOSPITAL_COD "
-                "WHERE HOSPITAL.NOMBRE = IN (:p1)"
+                "WHERE HOSPITAL.NOMBRE  IN (:p1)"
             )
             cursor.execute(consulta, (hospNombre,))
             results = cursor.fetchall()
