@@ -16,4 +16,4 @@ try:
 except HTTPError as http_err:
     print(f'HTTP error occurred: {http_err}')
 except Exception as err:
-    print(f'Other error occurred: {err}') 
+    print(f'Other error occurred: {err}')

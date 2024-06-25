@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Personajes de Star Wars</h1>
+<table border="1" style="width:100%">
+        <tr>
+            <th>Nombre</th>
+            <th>Altura</th>
+            <th>Peso</th>
+        </tr>
+        {% for results in datos.results %}
+        <tr>
+            <td>{{ results.name }}</td>
+            <td>{{ results.height }}</td>
+            <td>{{ results.mass }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
