@@ -14,6 +14,6 @@ empleados = response.json()
 
 print("Listado empleados")
 
-print("-------------------")0
+print("-------------------")
 for i in empleados:
     print(i["apellido"])
