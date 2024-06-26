@@ -5,6 +5,7 @@ from Peliculas import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('alta', views.alta, name='Alta'),
+    path('listarSerie', views.listarSerie, name='listarSerie'),
     path('baja', views.baja, name='Baja'),
     path('modificar', views.modificar, name='Modificar'),
     path('listar', views.listar1, name='Listar'),

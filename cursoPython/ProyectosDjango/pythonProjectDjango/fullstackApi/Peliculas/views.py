@@ -7,12 +7,23 @@ def index(request):
     condicional = emple.devolverdato()
     condicional1 = {
         'datos': condicional,
-        'home': True
+        'home': True,
+        'personajes': False
     }
     return render(request, "data/template1Index.html",condicional1)
-
+def listarSerie(request):
+    ser = request.GET['Serie']
+    emple = Empleado1()
+    condicional = emple.devolverserie(ser)
+    condicional1 = {
+        'datos': condicional,
+        'home': False,
+        'personajes': True
+    }
+    return render(request, "data/template1Index.html", condicional1)
 
 def alta(request):
+
     return render(request, "data/template2Alta.html")
 
 
@@ -29,16 +40,17 @@ def listar(request):
 
 
 def alta1(request):
-    dept = request.POST['dept_no']
-    nombre = request.POST['dnombre']
-    loc = request.POST['loc']
+    idper = request.POST['idper']
+    nombre = request.POST['nom']
+    img = request.POST['img']
+    idserie = request.POST['idserie']
     emple = Empleado1()
-    condicional = emple.insertdato(dept, nombre, loc)
+    condicional = emple.insertdato(idper, nombre, img, idserie)
     condicional1 = {
         'condicional1': condicional,
         'crud': 'ALTA'
     }
-    return render(request, "data/templateResultado.html", condicional1)
+    return render(request, "data/template1Index.html", condicional1)
 
 
 def baja1(request):

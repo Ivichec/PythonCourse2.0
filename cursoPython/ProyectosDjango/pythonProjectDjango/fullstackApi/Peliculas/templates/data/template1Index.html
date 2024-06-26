@@ -2,54 +2,62 @@
 {% load static %}
 <html>
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Title</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'Estilos/estilos.css'%}">
+    <link href="{% static 'Estilos/estilos.css'%}" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <div id="espacioSuperior">
+<div id="espacioSuperior">
     <h1>RateMovies V2 Iván Checa García</h1>
-  </div>
-  <div id="contenedorPagina">
+</div>
+<div id="contenedorPagina">
     <header>
-      {% include 'data/navbar.html' %}
-      {% block content %}
-      {% endblock content %}
+        {% include 'data/navbar.html' %}
+        {% block content %}
+        {% endblock content %}
     </header>
     <aside id="aLaIzquierda">
     </aside>
     <section id="contenidoPrincipal">
-      {% if home %}
-      {% for results in datos %}
-      <div>
-        <img src="{{results.imagen}}" alt="{{results.nombre}}" width="500" height="400">
-        <br>
-        <h1>{{results.nombre}}</h1>
-        <p>IMDB: {{results.puntuacion}}</p>
-        <form action="GET">
-          <input type="submit" value="{{results.nombre}}" />
-        </form>
-      </div>
+        {% if home %}
+        {% for results in datos %}
+        <div>
+            <img alt="{{results.nombre}}" height="80%" src="{{results.imagen}}" width="80%">
+            <br>
+            <h1>{{results.nombre}}</h1>
+            <p>IMDB: {{results.puntuacion}}</p>
+            <a href="{% url 'listarSerie' %}?Serie={{results.idSerie}}">Personajes</a>
+        </div>
         <tr>
             <td>{{ results.name }}</td>
             <td>{{ results.height }}</td>
             <td>{{ results.mass }}</td>
         </tr>
         {% endfor %}
-      {% endif %}
-
-
-
-
+        {% endif %}
+        {% if personajes %}
+        <table border="1" style="width:100%">
+            <tr>
+                <th>Personajes</th>
+                <th>Imagen</th>
+            </tr>
+            {% for results in datos %}
+            <tr>
+                <td>{{ results.nombre }}</td>
+                <td><img alt="{{results.nombre}}" height="400" src="{{results.imagen}}" width="500"></td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
     </section>
     <aside id="aLaDerecha">
 
     </aside>
     <footer id="piePagina">
-      {% include 'data/footer.html' %}
-      {% block content1 %}
-      {% endblock content1 %}
+        {% include 'data/footer.html' %}
+        {% block content1 %}
+        {% endblock content1 %}
     </footer>
-  </div>
+</div>
 </body>
 </html>
