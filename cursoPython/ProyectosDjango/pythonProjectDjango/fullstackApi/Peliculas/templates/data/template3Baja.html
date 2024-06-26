@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+      <form method="post" action="ResultadoBaja">
+        {% csrf_token %}
+          <h4>Introduzca los datos para una nueva alta de departamento:</h4>
+          DEPT_NO: <input type="text" name="dept_no" /><br/><br/>
+          <input type="submit" value="Baja">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+      <form method="post" action="ResultadoModificar">
+        {% csrf_token %}
+          <h4>Introduzca los datos para modificar la localización de un departamento:</h4>
+          DEPT_NO: <input type="text" name="dept_no" /><br/><br/>
+          LOCALIZACION: <input type="text" name="loc" /><br/><br/>
+          <input type="submit" value="Modificar">
+    </form>
+
+</body>
+</html>
