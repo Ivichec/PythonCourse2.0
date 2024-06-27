@@ -19,8 +19,15 @@
     <aside id="aLaIzquierda">
     </aside>
     <section id="contenidoPrincipal">
+        {% if borrado.borrado1 %}
+            {% if borrado.borrado2 == True %}
+                <p>{{borrado.borrado2}}</p>
+                <h1>Serie borrada correctamente</h1>
+                {% else %}
+                 <h1>Error al borrar la serie, comprueba que exista</h1>
+            {% endif %}
+        {% endif %}
         {% if home %}
-
         {% for results in datos %}
         <div>
             <img alt="{{results.nombre}}" height="80%" src="{{results.imagen}}" width="80%">

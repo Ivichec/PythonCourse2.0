@@ -14,18 +14,12 @@ class Empleado1:
         print(departamento)
         print("Status: " + str(response.status_code))
 
-    def baja(self, dept_no):
-        cursor = self.connection.cursor()
-        try:
-            consulta = "DELETE FROM DEPT WHERE DEPT_NO = :p1"
-            cursor.execute(consulta, (dept_no,))
-            self.connection.commit()
-            return True
-        except cx_Oracle.DatabaseError as error:
-            print("Error: ", error)
-            return False
-        finally:
-            cursor.close()
+    def baja(self, idserie):
+        import requests
+        apiurl = "https://apiseriespersonajes.azurewebsites.net/api/Series/"+str(idserie)
+        response = requests.delete(apiurl)
+        print("ñksa´jgásfkjg´ças`ñlfkg+a`sfg" + str(response.status_code))
+        return str(response.status_code)
 
     def modificar(self, dept_no, loc):
         cursor = self.connection.cursor()

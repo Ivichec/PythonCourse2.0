@@ -8,7 +8,8 @@ def index(request):
     condicional1 = {
         'datos': condicional,
         'home': True,
-        'personajes': False
+        'personajes': False,
+        'borrado': False
     }
     return render(request, "data/template1Index.html", condicional1)
 
@@ -20,7 +21,8 @@ def listarSerie(request):
     condicional1 = {
         'datos': condicional,
         'home': False,
-        'personajes': True
+        'personajes': True,
+        'borrado': False
     }
     return render(request, "data/template1Index.html", condicional1)
 
@@ -35,7 +37,8 @@ def insertarDato(request):
     condicional1 = {
         'datos': condicional,
         'home': False,
-        'personajes': True
+        'personajes': True,
+        'borrado': False
     }
     return render(request, "data/template1Index.html", condicional1)
 
@@ -47,47 +50,21 @@ def alta(request):
 def Borrar(request):
     return render(request, "data/template3Baja.html")
 
-
-def modificar(request):
-    return render(request, "data/template4Modificar.html")
-
-
-def listar(request):
-    return render(request, "data/template5Listado.html")
-
-
-def alta1(request):
-    idper = request.POST['idper']
-    nombre = request.POST['nom']
-    img = request.POST['img']
-    idserie = request.POST['idserie']
+def baja1(request):
+    idserie = int(request.POST['idserie'])
     emple = Empleado1()
-    condicional = emple.insertdato(idper, nombre, img, idserie)
+    baja = emple.baja(idserie)
+    condicional = emple.devolverdato()
+    if baja == 200:
+        borrado = True
+    else:
+        borrado = False
+    print("ñsa´kjkfdg´pawskjfgáls´çgàfs" + str(borrado))
     condicional1 = {
-        'condicional1': condicional,
-        'crud': 'ALTA'
+        'datos': condicional,
+        'home': True,
+        'personajes': False,
+        'borrado': {'borrado1':[True],'borrado2':[borrado]}
     }
     return render(request, "data/template1Index.html", condicional1)
 
-
-def baja1(request):
-    idserie = request.POST['idserie']
-    emple = Empleado1()
-    condicional = emple.baja(idserie)
-    condicional1 = {
-        'condicional1': condicional,
-        'crud': 'BAJA'
-    }
-    return render(request, "data/templateResultado.html", condicional1)
-
-
-def modificar1(request):
-    dept = request.POST['dept_no']
-    loc = request.POST['loc']
-    emple = Empleado1()
-    condicional = emple.modificar(dept, loc)
-    condicional1 = {
-        'condicional1': condicional,
-        'crud': 'MODIFICAR'
-    }
-    return render(request, "data/templateResultado.html", condicional1)
