@@ -20,14 +20,14 @@
     </aside>
     <section id="contenidoPrincipal">
 
-      <form method="get" action="{% url 'listarSerie' %}?Serie={{idserie}}">
+      <form method="post" action="{% url 'insertarDato' %}">
         {% csrf_token %}
           <h4>Introduzca los datos para una nueva alta de departamento:</h4>
-          Id del personaje: <input type="text" name="idper" /><br/><br/>
+          Id del personaje: <input type="number" name="idper" /><br/><br/>
           Nombre del personaje: <input type="text" name="nom" /><br/><br/>
           Imagen del personaje: <input type="text" name="img" /><br/><br/>
-          Id de serie: <input type="text" name="idserie" /><br/><br/>
-          <input type="submit" value="Alta">
+          Id de serie: <input type="number" name="idserie" /><br/><br/>
+          <input type="submit" value="Insertar Nuevo Personaje">
     </form>
     </section>
     <aside id="aLaDerecha">

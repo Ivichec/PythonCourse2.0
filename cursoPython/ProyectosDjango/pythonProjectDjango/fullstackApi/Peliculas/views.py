@@ -10,7 +10,9 @@ def index(request):
         'home': True,
         'personajes': False
     }
-    return render(request, "data/template1Index.html",condicional1)
+    return render(request, "data/template1Index.html", condicional1)
+
+
 def listarSerie(request):
     ser = request.GET['Serie']
     emple = Empleado1()
@@ -22,12 +24,27 @@ def listarSerie(request):
     }
     return render(request, "data/template1Index.html", condicional1)
 
-def alta(request):
 
+def insertarDato(request):
+    idper = int(request.POST['idper'])
+    nom = request.POST['nom']
+    img = request.POST['img']
+    idserie = int(request.POST['idserie'])
+    Empleado1().insertdato(idper,nom,img,idserie)
+    condicional = Empleado1().devolverserie(idserie)
+    condicional1 = {
+        'datos': condicional,
+        'home': False,
+        'personajes': True
+    }
+    return render(request, "data/template1Index.html", condicional1)
+
+
+def alta(request):
     return render(request, "data/template2Alta.html")
 
 
-def baja(request):
+def Borrar(request):
     return render(request, "data/template3Baja.html")
 
 
@@ -54,9 +71,9 @@ def alta1(request):
 
 
 def baja1(request):
-    dept = request.POST['dept_no']
+    idserie = request.POST['idserie']
     emple = Empleado1()
-    condicional = emple.baja(dept)
+    condicional = emple.baja(idserie)
     condicional1 = {
         'condicional1': condicional,
         'crud': 'BAJA'
@@ -74,13 +91,3 @@ def modificar1(request):
         'crud': 'MODIFICAR'
     }
     return render(request, "data/templateResultado.html", condicional1)
-
-
-def listar1(request):
-    emple = Empleado1()
-    condicional = emple.devolverdato()
-    condicional1 = {
-        'condicional1': condicional,
-        'crud': 'LISTAR'
-    }
-    return render(request, "data/template5Listado.html", condicional1)

@@ -1,17 +1,41 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link href="{% static 'Estilos/estilos.css'%}" rel="stylesheet" type="text/css">
 </head>
 
 <body>
-      <form method="post" action="ResultadoBaja">
-        {% csrf_token %}
-          <h4>Introduzca los datos para una nueva alta de departamento:</h4>
-          DEPT_NO: <input type="text" name="dept_no" /><br/><br/>
-          <input type="submit" value="Baja">
-    </form>
-
+<div id="espacioSuperior">
+    <h1>RateMovies V2 Iván Checa García</h1>
+</div>
+<div id="contenedorPagina">
+    <header>
+        {% include 'data/navbar.html' %}
+        {% block content %}
+        {% endblock content %}
+    </header>
+    <aside id="aLaIzquierda">
+    </aside>
+    <section id="contenidoPrincipal">
+        <br><br><br>
+        <form action="ResultadoBaja" method="post">
+            {% csrf_token %}
+            <h4>Introduce el id del personaje a borrar</h4>
+            Id Serie: <input name="idserie" type="text"/><br/><br/>
+            <input type="submit" value="Baja">
+        </form>
+        <br><br><br>
+    </section>
+    <aside id="aLaDerecha">
+    </aside>
+    <footer id="piePagina">
+        {% include 'data/footer.html' %}
+        {% block content1 %}
+        {% endblock content1 %}
+    </footer>
+</div>
 </body>
 </html>

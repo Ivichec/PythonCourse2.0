@@ -20,6 +20,7 @@
     </aside>
     <section id="contenidoPrincipal">
         {% if home %}
+
         {% for results in datos %}
         <div>
             <img alt="{{results.nombre}}" height="80%" src="{{results.imagen}}" width="80%">
@@ -32,6 +33,7 @@
             <td>{{ results.name }}</td>
             <td>{{ results.height }}</td>
             <td>{{ results.mass }}</td>
+            <br><br>
         </tr>
         {% endfor %}
         {% endif %}
@@ -44,7 +46,7 @@
             {% for results in datos %}
             <tr>
                 <td>{{ results.nombre }}</td>
-                <td><img alt="{{results.nombre}}" height="400" src="{{results.imagen}}" width="500"></td>
+                <td><img alt="{{results.nombre}}" height="80%" src="{{results.imagen}}" width="80%"></td>
             </tr>
             {% endfor %}
         </table>
