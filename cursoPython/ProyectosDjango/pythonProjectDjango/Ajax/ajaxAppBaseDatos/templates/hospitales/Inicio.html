@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+  </head>
+
+  <body>
+<script src="{% static 'jquery-3.2.1.min.js'%}" type="text/javascript"></script>
+
+<h3>Le sugerimos lo siguiente:</h3>
+<ol class="round">
+    <li class="one">
+        <h5>HOSPITALES</h5>
+        <button type="button" id="btnhospitales">Vista de Hospitales</button>
+        <div id="detallehospitales" style="display: none"></div>
+    </li>
+
+    <li class="two">
+        <h5>DOCTORES</h5>
+        <button type="button" id="btndoctores">Vista de Doctores</button>
+        <div id="detalledoctores" style="display: none"></div>
+    </li>
+    <li class="three">
+        <h5>PLANTILLA</h5>
+        <button type="button" id="btnplantilla">Vista de Plantilla</button>
+        <div id="detalleplantilla" style="display: none"></div>
+    </li>
+</ol>
+
+<script>
+
+   $(document).ready(function () {
+        $("#btnhospitales").click(function () {
+            $("#detallehospitales").toggle("slow");
+            $("#detallehospitales").load("viewHospitales");
+        });
+        $("#btndoctores").click(function () {
+            $("#detalledoctores").toggle("slow");
+            $("#detalledoctores").load("viewDoctores");
+        });
+        $("#btnplantilla").click(function () {
+            $("#detalleplantilla").toggle("slow");
+            $("#detalleplantilla").load("viewPlantilla");
+        });
+    });
+</script>

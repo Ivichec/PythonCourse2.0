@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+        <tr>
+            <th>CODIGO DE HOSPITAL</th>
+            <th>CODIGO DE SALA</th>
+            <th>NUMERO DE EMPLEADO</th>
+            <th>APELLIDO</th>
+            <th>FUNCION</th>
+            <th>TURNO</th>
+            <th>SALARIO</th>
+        </tr>
+        {% for HOSPITAL_COD,SALA_COD,EMPLEADO_NO,APELLIDO,FUNCION,TURNO,SALARIO in listado_Plantilla%}
+
+            <tr>
+                <td>{{HOSPITAL_COD}}</td>
+                <td>{{SALA_COD}}</td>
+                <td>{{EMPLEADO_NO}}</td>
+                <td>{{APELLIDO}}</td>
+                <td>{{FUNCION}}</td>
+                <td>{{TURNO}}</td>
+                <td>{{SALARIO}}</td>
+            </tr>
+       {% endfor%}
+    </table>
+</body>
+</html>
