@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+        <tr>
+            <th>NOMBRE</th>
+            <th>TIPO</th>
+        </tr>
+        {% for leng in listado_Lenguajes%}
+
+            <tr>
+                <td>{{leng.nombre}}</td>
+                <td>{{leng.tipo}}</td>
+            </tr>
+       {% endfor%}
+    </table>
+
+</body>
+</html>
