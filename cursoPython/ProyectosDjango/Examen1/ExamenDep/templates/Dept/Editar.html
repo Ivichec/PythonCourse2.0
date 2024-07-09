@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Editar departamento</h1>
+    <form action="editarDeptNo" method="post">
+    {% csrf_token %}
+  <ul>
+      <input type="hidden" id="olddept" name="olddept" value="{{condicional1.0.0}}">
+    <li>
+      <label for="newdept">DeptNo</label><br>
+      <input type="text" id="newdept" name="newdept" value="{{condicional1.0.0}}"/>
+    </li>
+    <li>
+      <label for="nom">Nombre</label><br>
+      <input type="text" id="nom" name="nom" value="{{condicional1.0.1}}"/>
+    </li>
+    <li>
+      <label for="loc">Localización</label><br>
+      <input type="text" id="loc" name="loc" value="{{condicional1.0.2}}"/>
+    </li>
+  </ul>
+        <input type="submit" value="Editar">
+</form>
+</body>
+</html>

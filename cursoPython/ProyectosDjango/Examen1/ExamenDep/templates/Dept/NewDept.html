@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Nuevo departamento</h1>
+    <form action="darAlta" method="post">
+    {% csrf_token %}
+  <ul>
+    <li>
+      <label for="newdept">DeptNo</label><br>
+      <input type="text" id="newdept" name="deptNo"/>
+    </li>
+    <li>
+      <label for="nom">Nombre</label><br>
+      <input type="text" id="nom" name="nom"/>
+    </li>
+    <li>
+      <label for="loc">Localización</label><br>
+      <input type="text" id="loc" name="loc"/>
+    </li>
+  </ul>
+        <input type="submit" value="Insertar">
+</form>
+</body>
+</html>

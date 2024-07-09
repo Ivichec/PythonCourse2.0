@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1 style="text-align:center">Departamentos</h1>
+    <table style="width:60%; text-align:left">
+            <tr>
+                <th><strong><h2>DeptNo</h2></strong></th>
+                <th><strong><h2>Nombre</h2></strong></th>
+                <th><strong><h2>Localización</h2></strong></th>
+                <th><strong><h2>Acciones</h2></strong></th>
+            </tr>
+            {% for dep, ofi, sal in condicional1 %}
+            <tr>
+                <td>{{ dep }}</td>
+                <td>{{ ofi }}</td>
+                <td>{{ sal }}</td>
+                <td><a href="baja?dept_no={{dep}}" onclick="return sure()">Borrar</a>&nbsp<a href="modificar?dept_no={{dep}}">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <h2><a href="alta">Nuevo</a></h2>
+
+<script>
+   function sure() {
+      var check = confirm("¿Estas segura de eliminar este departamento?");
+        if (check == true) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+</script>
+</body>
+</html>
